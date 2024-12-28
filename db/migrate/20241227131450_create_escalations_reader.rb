@@ -4,7 +4,7 @@ class CreateEscalationsReader < ActiveRecord::Migration[8.0]
       t.references :escalation
       t.references :reader
       t.string :role
-      t.string :did_serve
+      t.boolean :did_serve
 
       t.timestamps
     end

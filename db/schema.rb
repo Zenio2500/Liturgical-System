@@ -36,7 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_27_134539) do
     t.bigint "escalation_id"
     t.bigint "reader_id"
     t.string "role"
-    t.string "did_serve"
+    t.boolean "did_serve"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["escalation_id"], name: "index_escalations_readers_on_escalation_id"
