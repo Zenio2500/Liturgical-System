@@ -8,7 +8,7 @@ class Reader < ApplicationRecord
     validates :email, :phone_number, uniqueness: true
 
     after_create :create_dash
-    before_destroy :destroy_dash
+    before_destroy :destroy_dash, :destroy_escalation_reader
 
     def create_dash
         dash = Dash.create(reader_id: self.id)
@@ -21,6 +21,13 @@ class Reader < ApplicationRecord
             self.update(dash_id: nil)
             dash.update(reader_id: nil)
             dash.destroy
+        end
+    end
+
+    def destroy_escalation_reader
+        er = EscalationsReader.where(reader_id: self.id)
+        unless er == []
+            er.destroy_all
         end
     end
 
